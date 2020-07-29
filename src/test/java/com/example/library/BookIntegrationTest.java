@@ -1,7 +1,7 @@
 package com.example.library;
 
 
-import com.example.library.LibraryApplication;
+import com.example.library.dao.repo.BookRepository;
 import com.example.library.model.dto.BookDto;
 import com.fasterxml.jackson.core.JsonParseException;
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -9,13 +9,11 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Before;
 import org.junit.FixMethodOrder;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.MethodSorters;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
@@ -30,7 +28,6 @@ import org.springframework.web.context.WebApplicationContext;
 import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -38,12 +35,15 @@ import static org.junit.Assert.assertTrue;
 @WebAppConfiguration
 @FixMethodOrder(MethodSorters.NAME_ASCENDING)
 @ActiveProfiles("test")
-public class LibraryTest {
+public class BookIntegrationTest {
 
     protected MockMvc mvc;
 
     @Autowired
     WebApplicationContext webApplicationContext;
+
+    @Autowired
+    private BookRepository bookRepository;
 
     @Value("${myProperty.test.app:0}")
     private String myPropertytestapp;
@@ -127,7 +127,6 @@ public class LibraryTest {
         assertEquals("Exception while updating book record", content);
         System.out.println(" testCreateBook2Positive done");
     }      
-    
 
-    
+
 }

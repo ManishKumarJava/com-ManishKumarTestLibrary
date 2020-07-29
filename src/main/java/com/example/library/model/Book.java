@@ -31,6 +31,12 @@ public class Book {
     public Book() {
     }
 
+    public Book(String isbn, String bookName, String author, int numbers) {
+        this.isbn = isbn;
+        this.bookName = bookName;
+        this.author = author;
+        this.numbers = numbers;
+    }
 
     public int getNumbers() {
         return numbers;
